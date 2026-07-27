@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap');
+@import 'tailwindcss';
+
+:root {
+  --background: 0 0% 0%;
+  --foreground: 135 100% 50%;
+  --border: 135 100% 10%;
+  --card: 0 0% 2%;
+  --card-foreground: 135 100% 50%;
+  --popover: 0 0% 0%;
+  --popover-foreground: 135 100% 50%;
+  --primary: 135 100% 50%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 41 100% 50%;
+  --secondary-foreground: 0 0% 0%;
+  --muted: 135 100% 10%;
+  --muted-foreground: 135 50% 40%;
+  --accent: 135 100% 20%;
+  --accent-foreground: 135 100% 50%;
+  --destructive: 0 100% 50%;
+  --destructive-foreground: 0 0% 0%;
+  --input: 135 100% 10%;
+  --ring: 135 100% 50%;
+  
+  --crt-green: #00ff41;
+  --crt-amber: #ffb000;
+  --crt-dim: #003300;
+  --crt-panel: #0a0a0a;
+  --crt-border: #1a3a1a;
+
+  --app-font-sans: 'Share Tech Mono', monospace;
+  --app-font-serif: 'VT323', monospace;
+  --app-font-mono: 'VT323', monospace;
+  
+  --radius: 0px;
+}
+
+.dark {
+  --background: 0 0% 0%;
+  --foreground: 135 100% 50%;
+  --border: 135 100% 10%;
+  --card: 0 0% 2%;
+  --card-foreground: 135 100% 50%;
+  --popover: 0 0% 0%;
+  --popover-foreground: 135 100% 50%;
+  --primary: 135 100% 50%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 41 100% 50%;
+  --secondary-foreground: 0 0% 0%;
+  --muted: 135 100% 10%;
+  --muted-foreground: 135 50% 40%;
+  --accent: 135 100% 20%;
+  --accent-foreground: 135 100% 50%;
+  --destructive: 0 100% 50%;
+  --destructive-foreground: 0 0% 0%;
+  --input: 135 100% 10%;
+  --ring: 135 100% 50%;
+}
+
+@layer base {
+  body {
+    @apply font-mono bg-black antialiased overflow-x-hidden;
+    background-color: #000;
+    color: var(--crt-green);
+    animation: flicker 0.15s infinite;
+  }
+}
+
+@keyframes flicker {
+  0% { opacity: 0.98; }
+  50% { opacity: 0.95; }
+  100% { opacity: 0.99; }
+}
+
+@keyframes glitch-anim {
+  0% { text-shadow: 0.05em 0 0 rgba(255,0,0,0.75), -0.05em -0.025em 0 rgba(0,255,0,0.75), -0.025em 0.05em 0 rgba(0,0,255,0.75); }
+  14% { text-shadow: 0.05em 0 0 rgba(255,0,0,0.75), -0.05em -0.025em 0 rgba(0,255,0,0.75), -0.025em 0.05em 0 rgba(0,0,255,0.75); }
+  15% { text-shadow: -0.05em -0.025em 0 rgba(255,0,0,0.75), 0.025em 0.025em 0 rgba(0,255,0,0.75), -0.05em -0.05em 0 rgba(0,0,255,0.75); }
+  49% { text-shadow: -0.05em -0.025em 0 rgba(255,0,0,0.75), 0.025em 0.025em 0 rgba(0,255,0,0.75), -0.05em -0.05em 0 rgba(0,0,255,0.75); }
+  50% { text-shadow: 0.025em 0.05em 0 rgba(255,0,0,0.75), 0.05em 0 0 rgba(0,255,0,0.75), 0 -0.05em 0 rgba(0,0,255,0.75); }
+  99% { text-shadow: 0.025em 0.05em 0 rgba(255,0,0,0.75), 0.05em 0 0 rgba(0,255,0,0.75), 0 -0.05em 0 rgba(0,0,255,0.75); }
+  100% { text-shadow: -0.025em 0 0 rgba(255,0,0,0.75), -0.025em -0.025em 0 rgba(0,255,0,0.75), -0.025em -0.05em 0 rgba(0,0,255,0.75); }
+}
+
+.glitch {
+  animation: glitch-anim 2.5s infinite;
+}
+
+@keyframes glitch-anim-heavy {
+  0% { transform: translate(0); text-shadow: 0 0 0; }
+  2% { transform: translate(-2px, 1px); text-shadow: 2px 0 red, -2px 0 blue; }
+  4% { transform: translate(2px, -1px); text-shadow: -2px 0 red, 2px 0 blue; }
+  6% { transform: translate(0); text-shadow: 0 0 0; }
+  100% { transform: translate(0); text-shadow: 0 0 0; }
+}
+
+.glitch-heavy {
+  animation: glitch-anim-heavy 3s infinite;
+}
+
+.terminal-button {
+  @apply font-mono bg-transparent border border-[#00ff41] text-[#00ff41] px-4 py-2 uppercase transition-colors duration-75 hover:bg-[#00ff41] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#00ff41] focus:ring-offset-2 focus:ring-offset-black disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.terminal-input {
+  @apply font-mono bg-black border-b border-[#00ff41] text-[#00ff41] px-2 py-1 outline-none focus:border-b-2 placeholder-[#003300];
+}
+
+.terminal-panel {
+  @apply border border-[#1a3a1a] bg-[#0a0a0a] p-4;
+}
+
+.scanline-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.3) 2px, rgba(0,0,0,0.3) 4px);
+}
+
+.vignette-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9998;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.8) 100%);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+  border-left: 1px solid #1a3a1a;
+}
+::-webkit-scrollbar-thumb {
+  background: #00ff41;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffb000;
+}
